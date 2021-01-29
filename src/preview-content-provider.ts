@@ -263,7 +263,8 @@ export class MarkdownPreviewEnhancedView {
       head: "", // <base url=""> will cause mermaid not able to render arrow.
       // webviewScript: path.resolve(__dirname, './webview.js') // NVM, use default `mume` webview script.
     });
-    await mume.utility.writeFile(htmlFilePath, html, { encoding: "utf-8" });
+    const htmlReplaced = html.replace("xlink:href", "href");
+    await mume.utility.writeFile(htmlFilePath, htmlReplaced, { encoding: "utf-8" });
 
     // load to webview
     await this.waitUtilWebviewDOMReady();

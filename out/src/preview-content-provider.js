@@ -224,7 +224,8 @@ class MarkdownPreviewEnhancedView {
                 },
                 head: "",
             });
-            yield mume.utility.writeFile(htmlFilePath, html, { encoding: "utf-8" });
+            const htmlReplaced = html.replace("xlink:href", "href");
+            yield mume.utility.writeFile(htmlFilePath, htmlReplaced, { encoding: "utf-8" });
             // load to webview
             yield this.waitUtilWebviewDOMReady();
             if (this.webview.getURL() === htmlFilePath) {
